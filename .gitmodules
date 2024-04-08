@@ -1,3 +1,9 @@
 [submodule "blogging-site"]
 	path = blogging-site
 	url = https://github.com/Jenniferwonder/blogging-site.git
+[submodule "mongoose-crash"]
+	path = mongoose-crash
+	url = https://github.com/Jenniferwonder/mongoose-crash.git
+[submodule "mongodb-e-commerce"]
+	path = mongodb-e-commerce
+	url = https://github.com/Jenniferwonder/mongodb-e-commerce.git
