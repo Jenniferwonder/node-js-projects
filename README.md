@@ -1,1 +1,1 @@
-# node-js-course-projects
+# node-js-projects
