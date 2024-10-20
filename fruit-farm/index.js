@@ -1,30 +1,11 @@
-const fs = require('fs');
-const http = require('http');
-const url = require('url');
+const fs = require('node:fs');
+const http = require('node:http');
+const url = require('node:url');
 
 const slugify = require('slugify');
 
 const replaceTemplate = require('./modules/replaceTemplate');
 
-//////////////////////////
-//FILE
-// Synchronous Code: Blocking code execution
-/* const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
-console.log(textIn);
-
-const textOut = `This is what we know about the avocado: ${textIn}.\nCreated on ${new Date(
-    Date.now()
-)}`;
-fs.writeFileSync("./txt/output.txt", textOut, "utf-8");
-console.log("File written"); */
-
-// Non-blocking code execution
-/* fs.readFile("./txt/start.txt", "utf-8", (err, data) => {
-	console.log(data);
-});
-console.log("Reading file..."); */
-
-////////////////////////////
 //SERVER
 
 const tempOverview = fs.readFileSync(
@@ -35,6 +16,7 @@ const tempCard = fs.readFileSync(
   `${__dirname}/templates/template-card.html`,
   'utf-8'
 );
+
 const tempProduct = fs.readFileSync(
   `${__dirname}/templates/template-product.html`,
   'utf-8'

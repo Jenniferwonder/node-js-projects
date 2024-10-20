@@ -1,12 +1,12 @@
 {
-  "name": "node-farm",
+  "name": "node-farm-pro",
   "version": "1.0.0",
-  "description": "index.js",
+  "description": "learning node.js",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
   },
-  "author": "",
+  "author": "Jenniferwonder",
   "license": "ISC",
   "dependencies": {
     "slugify": "^1.6.5"
