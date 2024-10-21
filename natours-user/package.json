@@ -4,8 +4,8 @@
   "description": "Learning node, express and mongoDB",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "prod": "SET NODE_ENV=production & nodemon server.js"
+    "start": "nodemon 8-server-modal-refactor.js",
+    "prod": "SET NODE_ENV=production && nodemon 8-server-modal-refactor.js"
   },
   "author": "",
   "license": "ISC",
