@@ -2,7 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 // const tourRouter = require('./routes/2-tourRoutes-refactor');
 // const userRouter = require('./routes/2-userRoutes-refactor');
-const tourRouter = require('./routes/4-tourRoutes-mongo');
+// const tourRouter = require('./routes/4-tourRoutes-mongo');
+// const tourRouter = require('./routes/5-tourRoutes-alias');
+const tourRouter = require('./routes/6-tourRoutes-aggregate');
 const userRouter = require('./routes/3-userRoutes-param-middleware');
 
 const app = express();

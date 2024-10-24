@@ -1,11 +1,17 @@
 const Tour = require('../modals/tourModal');
 
 // Route Handlers
-
+// ✅ USE ALIAS MIDDLEWARE
+exports.aliasTopTours = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-ratingsAverage,price';
+  req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
+  next();
+};
 // ✅ READ DATA
 exports.getAllTours = async (req, res) => {
   try {
-    // 🟢 Get all tours
+    // 🟢Get all tours
     // const tours = await Tour.find();
     // 🟢BUILD QUERY
     // Exclude some fields from query
