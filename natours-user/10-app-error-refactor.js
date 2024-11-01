@@ -4,10 +4,10 @@ const morgan = require('morgan'); // 🛠️ Log tool
 // const userRouter = require('./routes/2-userRoutes-refactor');
 // const tourRouter = require('./routes/4-tourRoutes-mongo');
 // const tourRouter = require('./routes/5-tourRoutes-alias');
-const tourRouter = require('./routes/6-tourRoutes-aggregate');
-const userRouter = require('./routes/3-userRoutes-param-middleware');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
+const tourRouter = require('./routes/6-tourRoutes-aggregate');
+const userRouter = require('./routes/3-userRoutes-param-middleware');
 
 const app = express();
 // 1) ✅ MIDDLEWARES

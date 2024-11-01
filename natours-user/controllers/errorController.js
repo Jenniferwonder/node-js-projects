@@ -20,6 +20,7 @@ const handleValidationErrorDB = (err) => {
 }; */
 
 const sendErrorDev = (err, res) => {
+  console.log('err', err);
   res.status(err.statusCode).json({
     status: err.status,
     error: err,
@@ -29,7 +30,7 @@ const sendErrorDev = (err, res) => {
 };
 const sendErrorProd = (err, res) => {
   // Operational, trusted error: send message to client
-  console.log(err.isOperational);
+  console.log('operational', err.isOperational);
   if (err.isOperational) {
     res.status(err.statusCode).json({
       status: err.status,
@@ -57,12 +58,12 @@ module.exports = (err, req, res, next) => {
   // ✅ Show different errors in development vs production
   console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'development') {
+    // console.log('err', err.name);
     sendErrorDev(err, res);
-  } else if (process.env.NODE_ENV === 'production') {
-    // console.log(err);
+  } else {
+    // console.log('err', err.name);
     let error = { ...err }; // Create a copy
-    // console.log(error);
-    if (error.name === 'CastError') error = handleCastErrorDB(error);
+    if (err.name === 'CastError') error = handleCastErrorDB(error); // NOTE:❗🐛 'err' can't be written as 'error'
     sendErrorProd(error, res);
   }
 };
