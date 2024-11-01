@@ -11,7 +11,7 @@ const {
   getMonthlyPlan,
   // checkID,
   // checkBody,
-} = require('../controllers/5-tourController-aggregate');
+} = require('../controllers/6-tourController-errorHandle');
 
 // Route handlers
 // >>>>>>>>>>>>>> refactored to tourController.js

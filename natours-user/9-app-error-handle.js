@@ -30,6 +30,27 @@ app.use(logger);
 // 3) ✅ ROUTES (Mount the routers)
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+// 💪 Handle undefined routes
+app.all('*', (req, res, next) => {
+  /* res.status(404).json({
+    status: 'fail',
+    message: `Can't find ${req.originalUrl} on this server!`,
+  }); */
+  const err = new Error(`Can't find ${req.originalUrl} on this server!`);
+  err.status = 'fail';
+  err.statusCode = 404;
+  next(err);
+});
+// 💪 Global error handler: 1) create a middleware 2) create an error that the function will handle
+app.use((err, req, res, next) => {
+  err.statusCode = err.statusCode || 500; // internal server error
+  err.status = err.status || 'error';
+
+  res.status(500).json({
+    status: err.status,
+    message: err.message,
+  });
+});
 
 // 4) ✅ START SERVER
 // >>>>>>>> refactored to server.js
