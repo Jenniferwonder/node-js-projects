@@ -7,7 +7,8 @@ const morgan = require('morgan'); // 🛠️ Log tool
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/6-tourRoutes-aggregate');
-const userRouter = require('./routes/3-userRoutes-param-middleware');
+// const userRouter = require('./routes/3-userRoutes-param-middleware');
+const userRouter = require('./routes/4-userRoutes-signup');
 
 const app = express();
 // 1) ✅ MIDDLEWARES
