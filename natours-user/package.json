@@ -4,8 +4,8 @@
   "description": "Learning node, express and mongoDB",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon 8-server-modal-refactor.js",
-    "prod": "SET NODE_ENV=production && nodemon 8-server-modal-refactor.js",
+    "start": "nodemon 9-server-unhandled-rejection.js",
+    "prod": "SET NODE_ENV=production && nodemon 9-server-unhandled-rejection.js",
     "debug": "ndb 8-server-modal-refactor.js"
   },
   "author": "",

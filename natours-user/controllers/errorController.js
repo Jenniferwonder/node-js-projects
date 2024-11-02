@@ -8,19 +8,22 @@ const handleCastErrorDB = (err) => {
   const message = `Invalid ${err.path}: ${err.value}.`;
   return new AppError(message, 400);
 };
-/* const handleDuplicateFieldsDB = (err) => {
+const handleDuplicateFieldsDB = (err) => {
+  // Match text between quotes ""
   const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
+  // console.log('val', value);
   const message = `Duplicate field value: ${value}. Please use another value!`;
   return new AppError(message, 400);
 };
 const handleValidationErrorDB = (err) => {
   const errors = Object.values(err.errors).map((el) => el.message);
+  console.log(errors);
   const message = `Invalid input data. ${errors.join('. ')}`;
   return new AppError(message, 400);
-}; */
+};
 
 const sendErrorDev = (err, res) => {
-  console.log('err', err);
+  // console.log('err', err);
   res.status(err.statusCode).json({
     status: err.status,
     error: err,
@@ -64,6 +67,8 @@ module.exports = (err, req, res, next) => {
     // console.log('err', err.name);
     let error = { ...err }; // Create a copy
     if (err.name === 'CastError') error = handleCastErrorDB(error); // NOTE:❗🐛 'err' can't be written as 'error'
+    if (err.code === 11000) error = handleDuplicateFieldsDB(err);
+    if (err.name === 'ValidationError') error = handleValidationErrorDB(err);
     sendErrorProd(error, res);
   }
 };
