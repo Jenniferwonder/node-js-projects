@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcrypt');
 // const slugify = require('slugify');
 
 // name, email, photo, password, passwordConfirm
@@ -28,12 +29,13 @@ const userSchema = new mongoose.Schema(
     passwordConfirm: {
       type: String,
       required: [true, 'Please confirm your password'],
-      // validate: {
-      //   validator: function (el) {
-      //     return el === this.password;
-      //   },
-      //   message: 'Passwords are not the same',
-      // },
+      validate: {
+        // NOTE: This only works on CREATE and SAVE
+        validator: function (el) {
+          return el === this.password;
+        },
+        message: 'Passwords are not the same',
+      },
     },
   }
   // 💪 Add Virtual Properties
@@ -44,6 +46,21 @@ const userSchema = new mongoose.Schema(
 // ✅ QUERY MIDDLEWARE: runs before .find()
 // });
 // ✅ AGGREGATION MIDDLEWARE: runs before .aggregate()
+
+// ✅`Hash Password
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+
+  // Hash the password using bcrypt, with cost of 10
+  const hashedPassword = await bcrypt.hash(this.password, 10);
+
+  // Replace the plain text password with the hashed one
+  this.password = hashedPassword;
+
+  // Delete the passwordConfirm field
+  this.passwordConfirm = undefined; // required for input not for db
+  next();
+});
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
