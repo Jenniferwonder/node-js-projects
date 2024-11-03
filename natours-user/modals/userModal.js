@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please provide a password'],
       minlength: [8, 'Password must be at least 8 characters long'],
-      // select: false, // This field won't be returned in the API response
+      select: false, // This field won't be returned in the API response
     },
     passwordConfirm: {
       type: String,
@@ -61,6 +61,12 @@ userSchema.pre('save', async function (next) {
   this.passwordConfirm = undefined; // required for input not for db
   next();
 });
+
+// ✅ Instance Method: Compares password
+// Return true if password is correct
+userSchema.methods.correctPassword = async (candidatePassword, userPassword) =>
+  await bcrypt.compare(candidatePassword, userPassword);
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

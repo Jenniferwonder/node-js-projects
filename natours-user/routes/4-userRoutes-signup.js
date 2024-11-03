@@ -6,7 +6,7 @@ const {
   updateUser,
   deleteUser,
 } = require('../controllers/1-userController');
-const { signup } = require('../controllers/authController');
+const { signup, login } = require('../controllers/authController');
 
 // Route handler
 // >>>>>>>>>>>>>> 🚀refactored to 1-userController.js
@@ -14,6 +14,7 @@ const { signup } = require('../controllers/authController');
 // Routes
 const router = express.Router();
 router.post('/signup', signup);
+router.post('/login', login);
 router.route('/').get(getAllUsers).post(createUser);
 router.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);
 
